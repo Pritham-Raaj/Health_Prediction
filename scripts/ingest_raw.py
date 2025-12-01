@@ -80,7 +80,7 @@ def main():
         
         # Create stage (access role will own it)
         create_stage_sql = f"""
-        CREATE STAGE IF NOT EXIXTS healthstage
+        CREATE STAGE IF NOT EXISTS healthstage
             URL = 's3://{S3_BUCKET}'
             CREDENTIALS = (
                 AWS_KEY_ID = '{AWS_ACCESS_KEY_ID}'
