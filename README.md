@@ -143,23 +143,7 @@ Access the interactive documentation:
 - **Swagger UI**: http://localhost:8000/docs
 - **Health Check**: http://localhost:8000/health
 
-**Make a prediction (PowerShell):**
-```powershell
-$body = '{"age": 55, "sex": 1, "chest_pain_type": 2, "resting_bp": 140, "cholesterol": 250, "fasting_bs": 1, "resting_ecg": 0, "max_heart_rate": 150, "exercise_angina": 1, "oldpeak": 2.5, "location": 0}'
-Invoke-RestMethod -Uri "http://localhost:8000/predict" -Method POST -Body $body -ContentType "application/json"
-```
 
-**Response:**
-```json
-{
-  "prediction": 1,
-  "probability": 0.9359,
-  "risk_level": "High",
-  "model_version": "1.0.0"
-}
-```
-
----
 
 ## 📁 Project Structure
 
@@ -229,12 +213,7 @@ SELECT * FROM cleaned_data
 - Training artifacts
 - Model versioning
 
-**View experiments:**
-```bash
-cd mlflow_tracking
-mlflow ui
-# Open http://localhost:5000
-```
+
 
 ### 3. Production API (FastAPI)
 
@@ -245,7 +224,6 @@ mlflow ui
 - `GET /health` - Service health check
 
 **Features:**
-- Input validation with Pydantic
 - Automatic API documentation
 - Error handling
 - Structured logging
@@ -258,12 +236,6 @@ mlflow ui
 - Health checks
 - Volume mounts for persistence
 - Environment-based configuration
-
-**Deploy to Render:**
-```bash
-git push origin main
-# Auto-deploys via GitHub integration
-```
 
 ---
 
@@ -283,24 +255,6 @@ git push origin main
 - 11 features (age, sex, cholesterol, blood pressure, etc.)
 - Binary classification (heart disease: yes/no)
 - Balanced classes (51.7% positive)
-
----
-
-## 🔧 Configuration
-
-### Optional Features
-
-Edit `ml_service/config/settings.py`:
-
-```python
-# Model Explainability (SHAP)
-ENABLE_SHAP: bool = True  # Set False for faster startup
-```
-
-**Simple and focused:**
-- Core features: Prediction API + SHAP explanations
-- No complex monitoring dependencies
-- Fast startup, easy to demo
 
 ---
 
@@ -355,68 +309,7 @@ curl http://localhost:8000/health
 
 ---
 
-## 🎯 Skills Demonstrated
 
-✅ **Data Engineering**
-- ETL pipeline design with DBT
-- Data warehouse integration (Snowflake)
-- Data quality testing
-- Feature engineering
-
-✅ **Machine Learning**
-- Model training and hyperparameter tuning
-- Experiment tracking (MLflow)
-- Model evaluation and selection
-- Feature importance analysis
-
-✅ **MLOps & Deployment**
-- REST API development (FastAPI)
-- Model serving and inference
-- Docker containerization
-- Cloud deployment (Render)
-- CI/CD integration
-- Health monitoring
-
-✅ **Software Engineering**
-- Clean code architecture
-- API design and documentation
-- Error handling and validation
-- Logging and monitoring
-- Version control (Git)
-
----
-
-## 🔄 Development Workflow
-
-1. **Data Updates**: Run `dbt run` to refresh features
-2. **Model Retraining**: Run `python scripts/train_model_mlflow.py`
-3. **API Testing**: Use `/docs` endpoint for interactive testing
-4. **Deployment**: Push to GitHub → Auto-deploy to Render
-
----
-
-## 📈 Future Enhancements
-
-- [ ] Add authentication/authorization
-- [ ] Implement model versioning API
-- [ ] Add A/B testing capabilities
-- [ ] Set up monitoring dashboards
-- [ ] Add more ML algorithms
-- [ ] Implement batch prediction scheduler
-
----
-
-## 🤝 Contributing
-
-This is a portfolio project. Feel free to fork and adapt for your own use!
-
----
-
-## 📝 License
-
-MIT License - See LICENSE file for details
-
----
 
 ## 🙏 Acknowledgments
 
